@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mirzaei – API Platform</title>
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080A20; --bg2:#10143A; --ink:#EEF1FF; --muted:#9BA3D1; --line:rgba(160,175,255,.18);
+  --violet:#7B5CFF; --cyan:#29E0FF; --pink:#FF4FA3; --gold:#FFC857; --ok:#4ADE9A;
+  --glass:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:16px/1.9 "Vazirmatn",Tahoma,sans-serif;
+  background:radial-gradient(900px 600px at 80% -10%,#2A1F7A 0%,transparent 60%),radial-gradient(800px 600px at 0% 40%,#0B3A5E 0%,transparent 55%),var(--bg);
+  background-attachment:fixed;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.en{font-family:"Space Grotesk","Vazirmatn",sans-serif;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;position:relative}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative;z-index:3}
+.logo{font:700 24px "Space Grotesk",sans-serif;direction:ltr;letter-spacing:-.5px}
+.logo i{font-style:normal;color:var(--cyan)}
+nav{display:flex;gap:26px;color:var(--muted);font-size:15px}
+nav a:hover{color:var(--ink)}
+nav a span{display:block;font:500 11px/1.2 "Space Grotesk",sans-serif;direction:ltr;opacity:.7;text-align:center}
+.btn{display:inline-block;border:0;cursor:pointer;font:700 15px "Vazirmatn",sans-serif;color:#fff;padding:13px 26px;border-radius:14px;
+  background:linear-gradient(180deg,#9A82FF,#6445F0 55%,#4F32D6);
+  box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 -3px 0 rgba(0,0,0,.28) inset,0 6px 0 #3A22A8,0 14px 24px rgba(79,50,214,.5);
+  transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 -3px 0 rgba(0,0,0,.28) inset,0 1px 0 #3A22A8,0 4px 8px rgba(79,50,214,.5)}
+.btn.alt{background:linear-gradient(180deg,#3A4180,#252A5C);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 5px 0 #151946,0 12px 20px rgba(0,0,0,.4)}
+.hero{position:relative;min-height:640px;display:flex;align-items:center;padding:30px 0 60px}
+#gl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-t{position:relative;z-index:2;max-width:560px}
+.brand3d{font:700 clamp(58px,10vw,112px)/1 "Space Grotesk",sans-serif;direction:ltr;margin:0 0 6px;letter-spacing:-3px;color:#E9E4FF;
+  text-shadow:0 1px 0 #B9A9FF,0 2px 0 #9D88FF,0 3px 0 #8670F5,0 4px 0 #6F58E0,0 5px 0 #5A44C4,0 6px 0 #4733A3,0 7px 0 #372782,0 8px 0 #281C63,0 22px 30px rgba(0,0,0,.55),0 0 60px rgba(123,92,255,.45)}
+h1{font-size:clamp(24px,3.4vw,36px);line-height:1.5;margin:0 0 12px;font-weight:800}
+.lead{color:var(--muted);margin:0 0 6px;font-size:17px}
+.lead.en{font-size:15px;margin-bottom:28px;opacity:.85}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:64px 0;position:relative}
+h2{font-size:32px;margin:0;font-weight:800;line-height:1.4}
+.sub{margin:0 0 34px;color:var(--muted)}
+.sub .en{display:block;font-size:14px;opacity:.8}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1000px}
+.tilt{transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .2s;will-change:transform}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 30px 50px -20px rgba(0,0,0,.65),0 8px 0 -4px rgba(255,255,255,.04)}
+.card>*{transform:translateZ(28px)}
+.card h3{margin:10px 0 0;font-size:20px;line-height:1.5}
+.card h3 .en{display:block;font-size:14px;color:var(--cyan);font-weight:500}
+.card p{margin:8px 0 0;color:var(--muted);font-size:15px}
+.tag{font:13px ui-monospace,Menlo,Consolas,monospace;direction:ltr;display:inline-block;color:var(--cyan);background:rgba(41,224,255,.1);border:1px solid rgba(41,224,255,.3);padding:1px 12px;border-radius:99px}
+.term{background:#050719;border:1px solid var(--line);border-radius:20px;direction:ltr;overflow:hidden;box-shadow:0 40px 70px -25px rgba(0,0,0,.8),0 0 0 1px rgba(123,92,255,.2),0 0 80px -20px rgba(123,92,255,.4)}
+.term-h{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.term-h b{width:11px;height:11px;border-radius:50%;background:#FF5F57}.term-h b:nth-child(2){background:#FEBC2E}.term-h b:nth-child(3){background:#28C840}
+.tabs{display:flex;gap:6px;padding:10px 14px 0}
+.tabs button{background:none;border:0;color:var(--muted);font:600 14px "Space Grotesk",sans-serif;padding:8px 14px;cursor:pointer;border-radius:10px 10px 0 0}
+.tabs button[aria-selected="true"]{color:#fff;background:rgba(123,92,255,.25)}
+pre{margin:0;padding:18px 20px;font:14px/1.8 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;color:#CFD6FF;min-height:96px}
+.k{color:#8FB0FF}.s{color:#6EE7B7}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-block:1px solid var(--line);background:rgba(255,255,255,.03);font:13px "Space Grotesk",sans-serif}
+.bar .ok{color:var(--ok)}
+.bar button{font:700 13px "Space Grotesk",sans-serif;color:#fff;border:0;border-radius:9px;padding:7px 16px;cursor:pointer;background:linear-gradient(180deg,#9A82FF,#5A3FE0);box-shadow:0 3px 0 #3A22A8}
+.bar button:active{transform:translateY(3px);box-shadow:none}
+.price{font-size:36px;font-weight:800;color:var(--gold);margin:4px 0 0;line-height:1.4}
+.price small{font-size:14px;font-weight:500;color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:14px 0 22px}
+.plan li{padding:7px 0;border-top:1px solid var(--line);font-size:15px}
+.plan li::before{content:"✓";color:var(--ok);font-weight:800;margin-inline-end:8px}
+.plan .btn{width:100%;text-align:center}
+.plan.pop{border:1.5px solid var(--violet);background:linear-gradient(145deg,rgba(123,92,255,.28),rgba(41,224,255,.06));box-shadow:0 1px 0 rgba(255,255,255,.3) inset,0 40px 70px -20px rgba(123,92,255,.55)}
+.pop-tag{position:absolute;top:-14px;inset-inline-start:22px;z-index:2;background:var(--gold);color:#2A1F00;font-weight:800;font-size:13px;padding:1px 14px;border-radius:99px;box-shadow:0 3px 0 #B88A1E}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{counter-increment:s;padding:6px 18px;border-inline-start:3px solid var(--violet)}
+.step::before{content:counter(s);display:block;font:700 40px/1.2 "Space Grotesk",sans-serif;color:var(--cyan);text-shadow:0 2px 0 #0A5F70,0 4px 0 #063E4A,0 10px 18px rgba(0,0,0,.5)}
+.step h3{margin:0;font-size:18px}.step p{margin:4px 0 0;color:var(--muted);font-size:15px}
+details{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:14px 22px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:700}
+details p{margin:10px 0 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+dialog{border:1px solid var(--line);border-radius:20px;padding:28px;max-width:420px;background:#12163F;color:var(--ink);font-family:inherit}
+dialog::backdrop{background:rgba(2,4,20,.7)}
+dialog h3{margin:0 0 8px}dialog p{color:var(--muted);margin:0 0 20px}
+.hdr-r{display:flex;gap:12px;align-items:center}
+.wallet{display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--ink);font:700 14px/1.3 "Vazirmatn",sans-serif;padding:7px 14px;border-radius:14px;border:1px solid var(--line);background:var(--glass);box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 4px 0 rgba(0,0,0,.4),0 12px 22px rgba(0,0,0,.35);transition:transform .12s}
+.wallet:hover{transform:translateY(-2px)}.wallet:active{transform:translateY(3px)}
+.wallet svg{width:28px;height:28px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+.wallet small{display:block;font-weight:500;font-size:12px;color:var(--gold)}
+.bal{font-size:42px;font-weight:800;color:var(--gold);margin:4px 0 18px;line-height:1.3}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.show{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center}
+.stage{height:460px;border-radius:28px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(123,92,255,.3),transparent 62%),var(--glass);box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 40px 70px -25px rgba(0,0,0,.8),0 0 90px -25px rgba(41,224,255,.35)}
+#gl2{width:100%;height:100%;display:block}
+@media (max-width:860px){.show{grid-template-columns:1fr}.stage{height:360px}}
+@media (max-width:560px){.hdr-r .key{display:none}}
+@media (max-width:860px){
+  .grid3,.steps{grid-template-columns:1fr}
+  nav{display:none}
+  .hero{min-height:560px}
+  #gl{opacity:.55}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tilt{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top">Mirzaei<i>.</i></a>
+    <nav aria-label="منوی اصلی"><a href="#apis">APIها<span>APIs</span></a><a href="#try">امتحان<span>Try it</span></a><a href="#pricing">تعرفه<span>Pricing</span></a><a href="#faq">سوالات<span>FAQ</span></a></nav>
+    <div class="hdr-r">
+      <button class="wallet" id="wbtn" type="button" aria-label="کیف پول">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A82FF"/><stop offset="1" stop-color="#29E0FF"/></linearGradient></defs><path d="M5 9.5C5 8 6.2 7 7.7 7H22l-1.6 3H7.7C6.2 10 5 9.5 5 9.5z" fill="#FFC857"/><rect x="3" y="9" width="26" height="18" rx="5" fill="url(#wg)"/><rect x="3" y="9" width="26" height="18" rx="5" fill="none" stroke="rgba(255,255,255,.55)"/><rect x="19" y="14.5" width="10" height="7" rx="3.5" fill="#0F1240"/><circle cx="23" cy="18" r="1.7" fill="#FFC857"/></svg>
+        <span>کیف پول<small id="wbal">۰ تومان</small></span>
+      </button>
+      <a class="btn alt key" href="#pricing">دریافت کلید</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <canvas id="gl" aria-hidden="true"></canvas>
+      <div class="hero-t">
+        <h2 class="brand3d" style="font-size:inherit">Mirzaei</h2>
+        <h1><span class="en">Mirzaei</span>؛ API سریع و مطمئن برای ساختن محصول‌های بزرگ</h1>
+        <p class="lead">کلید اختصاصی بگیر، پلن ریالی بخر و در چند دقیقه سرویس را به پروژه‌ات وصل کن.</p>
+        <p class="lead en">Fast, reliable APIs with instant keys and local payments.</p>
+        <div class="cta"><a class="btn" href="#pricing">شروع کن · Get started</a><a class="btn alt" href="#try">امتحان زنده · Live demo</a></div>
+      </div>
+    </div>
+
+    <section id="apis">
+      <h2>APIهای ما <span class="en" style="color:var(--cyan);font-size:22px">/ Our APIs</span></h2>
+      <p class="sub">سه سرویس نمونه برای شروع. <span class="en">Three sample services to start with.</span></p>
+      <div class="grid3">
+        <div class="card tilt"><span class="tag">GET /v1/rates</span><h3>قیمت ارز و طلا<span class="en">Currency &amp; Gold Rates</span></h3><p>نرخ لحظه‌ای دلار، یورو و سکه با پاسخ JSON ساده.</p></div>
+        <div class="card tilt"><span class="tag">POST /v1/translate</span><h3>ترجمه‌ی متن<span class="en">Text Translation</span></h3><p>ترجمه‌ی فارسی، انگلیسی و عربی برای اپ و ربات.</p></div>
+        <div class="card tilt"><span class="tag">POST /v1/sms</span><h3>ارسال پیامک<span class="en">SMS Gateway</span></h3><p>ارسال تکی و انبوه، همراه با گزارش تحویل.</p></div>
+      </div>
+    </section>
+
+    <section id="try">
+      <h2>امتحان زنده <span class="en" style="color:var(--cyan);font-size:22px">/ Live demo</span></h2>
+      <p class="sub">یک سرویس را انتخاب کن و درخواست بفرست. <span class="en">Pick an endpoint and send a request.</span></p>
+      <div class="term">
+        <div class="term-h"><b></b><b></b><b></b></div>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="true">/rates</button><button role="tab" aria-selected="false">/translate</button><button role="tab" aria-selected="false">/sms</button></div>
+        <pre id="req"></pre>
+        <div class="bar"><span id="stat">Ready</span><button id="send" type="button">Send request</button></div>
+        <pre id="res" aria-live="polite">{ }</pre>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="show">
+        <div class="stage"><canvas id="gl2" aria-label="مدل سه‌بعدی تعاملی"></canvas></div>
+        <div>
+          <h2>هسته‌ی محکم، <span class="en" style="color:var(--cyan);font-size:24px">built around a solid core</span></h2>
+          <p class="lead" style="margin-top:12px">هر درخواست از یک هسته‌ی پایدار رد می‌شود: کلید اختصاصی، محدودیت مصرف و گزارش لحظه‌ای.</p>
+          <p class="lead en">One stable core: private keys, rate limits and live usage reports.</p>
+          <a class="btn" href="#pricing">مشاهده‌ی تعرفه · See pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>تعرفه‌ها <span class="en" style="color:var(--cyan);font-size:22px">/ Pricing</span></h2>
+      <p class="sub">قیمت‌ها نمونه است و قبل از انتشار نهایی تنظیم می‌شود. <span class="en">Sample prices, final numbers coming soon.</span></p>
+      <div class="grid3">
+        <div class="card plan tilt"><h3>آزمایشی<span class="en">Starter</span></h3><div class="price">رایگان</div>
+          <ul><li>۱٬۰۰۰ درخواست در ماه</li><li>یک کلید API</li><li>پشتیبانی ایمیل</li></ul>
+          <button class="btn alt buy" data-plan="آزمایشی">شروع رایگان</button></div>
+        <div class="card plan pop tilt"><span class="pop-tag">پیشنهادی · Popular</span><h3>حرفه‌ای<span class="en">Pro</span></h3><div class="price">۱۹۰٬۰۰۰ <small>تومان / ماه</small></div>
+          <ul><li>۱۰۰٬۰۰۰ درخواست در ماه</li><li>سه کلید API</li><li>گزارش مصرف روزانه</li><li>پشتیبانی تلگرام</li></ul>
+          <button class="btn buy" data-plan="حرفه‌ای">خرید پلن</button></div>
+        <div class="card plan tilt"><h3>سازمانی<span class="en">Business</span></h3><div class="price">۷۹۰٬۰۰۰ <small>تومان / ماه</small></div>
+          <ul><li>۱٬۰۰۰٬۰۰۰ درخواست در ماه</li><li>کلید نامحدود</li><li>تضمین پایداری</li><li>پشتیبانی اختصاصی</li></ul>
+          <button class="btn alt buy" data-plan="سازمانی">خرید پلن</button></div>
+      </div>
+    </section>
+
+    <section id="start">
+      <h2>سه قدم تا اولین پاسخ <span class="en" style="color:var(--cyan);font-size:22px">/ Three steps</span></h2>
+      <p class="sub"></p>
+      <div class="steps">
+        <div class="step"><h3>پلن را انتخاب کن <span class="en" style="font-size:14px;color:var(--muted)">Choose a plan</span></h3><p>با پلن رایگان شروع کن و هر وقت خواستی ارتقا بده.</p></div>
+        <div class="step"><h3>کلید بگیر <span class="en" style="font-size:14px;color:var(--muted)">Get your key</span></h3><p>بعد از پرداخت، کلید در پنل کاربری فعال می‌شود.</p></div>
+        <div class="step"><h3>درخواست بفرست <span class="en" style="font-size:14px;color:var(--muted)">Make a call</span></h3><p>کلید را در هدر Authorization بگذار و سرویس را صدا بزن.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>سوالات متداول <span class="en" style="color:var(--cyan);font-size:22px">/ FAQ</span></h2>
+      <p class="sub"></p>
+      <details><summary>پرداخت چطور انجام می‌شود؟ · How do I pay?</summary><p>پرداخت ریالی از طریق درگاه بانکی انجام می‌شود و بعد از تایید، پلن بلافاصله فعال می‌شود.</p></details>
+      <details><summary>اگر سهمیه‌ام تمام شود؟ · What if I run out?</summary><p>درخواست‌های بعدی با خطای ۴۲۹ رد می‌شوند و هر لحظه می‌توانی پلن را ارتقا بدهی.</p></details>
+      <details><summary>کلید را از کجا بگیرم؟ · Where is my key?</summary><p>بعد از ورود به پنل کاربری، در بخش «کلیدها» کلید جدید می‌سازی یا قبلی را حذف می‌کنی.</p></details>
+    </section>
+  </main>
+
+  <footer><span>© Mirzaei. تمام حقوق محفوظ است.</span><span class="en">support@example.com</span></footer>
+</div>
+
+<dialog id="wal">
+  <h3>کیف پول <span class="en" style="color:var(--cyan);font-size:15px">/ Wallet</span></h3>
+  <p style="margin:0">موجودی حساب شما در Mirzaei</p>
+  <div class="bal" id="wbig">۰ <small style="font-size:16px;font-weight:500;color:var(--muted)">تومان</small></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" disabled>افزایش موجودی</button><button class="btn alt" disabled>برداشت</button></div>
+  <p style="margin:18px 0 14px;font-size:14px">این بخش بعد از اتصال درگاه پرداخت فعال می‌شود.<br><span class="en">Top-ups unlock once a payment gateway is connected.</span></p>
+  <button class="btn alt" id="wclose" type="button">بستن</button>
+</dialog>
+
+<dialog id="dlg">
+  <h3 id="dlg-t">خرید پلن</h3>
+  <p>درگاه پرداخت هنوز وصل نشده. بعد از دریافت مجوز درگاه، این دکمه به صفحه‌ی پرداخت می‌رود.<br><span class="en">Payment gateway not connected yet.</span></p>
+  <button class="btn" id="close" type="button">متوجه شدم</button>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 3D scene
+  var cv=document.getElementById('gl');
+  if(window.THREE){try{
+    var r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+    var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,1,.1,100);cam.position.z=7;
+    var g=new THREE.Group();sc.add(g);
+    var knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.15,.4,220,28),new THREE.MeshStandardMaterial({color:0x7B5CFF,metalness:.9,roughness:.2}));
+    var wire=new THREE.Mesh(new THREE.TorusKnotGeometry(1.15,.52,90,12),new THREE.MeshBasicMaterial({color:0x29E0FF,wireframe:true,transparent:true,opacity:.18}));
+    g.add(knot,wire);
+    var orb=[];for(var i=0;i<4;i++){var o=new THREE.Mesh(new THREE.SphereGeometry(.12+i*.03,24,24),new THREE.MeshStandardMaterial({color:[0xFF4FA3,0x29E0FF,0xFFC857,0xFFFFFF][i],metalness:.4,roughness:.25}));o.userData.a=i*1.6;g.add(o);orb.push(o);}
+    var pg=new THREE.BufferGeometry(),pa=new Float32Array(900);for(var j=0;j<900;j++)pa[j]=(Math.random()-.5)*16;
+    pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+    sc.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x9BA3FF,size:.03})));
+    sc.add(new THREE.AmbientLight(0x6670CC,.7));
+    var l1=new THREE.PointLight(0x29E0FF,60,30);l1.position.set(4,3,5);sc.add(l1);
+    var l2=new THREE.PointLight(0xFF4FA3,50,30);l2.position.set(-4,-2,4);sc.add(l2);
+    var mx=0,my=0,t=0;
+    addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+    function size(){var h=cv.parentElement;r.setSize(h.clientWidth,h.clientHeight,false);cam.aspect=h.clientWidth/h.clientHeight;cam.updateProjectionMatrix();g.position.x=h.clientWidth>860?-2.6:0;}
+    size();addEventListener('resize',size);
+    function draw(){
+      t+=.01;knot.rotation.x=t*.6+my;knot.rotation.y=t+mx*2;wire.rotation.copy(knot.rotation);
+      g.position.y=Math.sin(t*1.4)*.15;
+      orb.forEach(function(o){var a=o.userData.a+t*1.2;o.position.set(Math.cos(a)*2.1,Math.sin(a*1.3)*1.2,Math.sin(a)*1.6);});
+      r.render(sc,cam);
+      if(!calm)requestAnimationFrame(draw);
+    }
+    draw();
+  }catch(e){}}
+  // card tilt
+  if(!calm)document.querySelectorAll('.tilt').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+      c.style.transform='perspective(900px) rotateX('+(-y*12)+'deg) rotateY('+(x*14)+'deg) translateY(-6px)';});
+    c.addEventListener('pointerleave',function(){c.style.transform='';});
+  });
+  // demo
+  var D=[{q:'<span class="k">GET</span> /v1/rates?symbol=<span class="s">USD</span>\n<span class="k">Authorization:</span> Bearer YOUR_KEY',a:'{\n  "symbol": "USD",\n  "price_toman": 61250,\n  "updated": "just now"\n}'},
+   {q:'<span class="k">POST</span> /v1/translate\n{ "text": <span class="s">"سلام دنیا"</span>, "to": <span class="s">"en"</span> }',a:'{\n  "translation": "Hello world",\n  "from": "fa"\n}'},
+   {q:'<span class="k">POST</span> /v1/sms\n{ "to": <span class="s">"0912xxxxxxx"</span>, "text": <span class="s">"Code: 4821"</span> }',a:'{\n  "id": "msg_9f2a",\n  "status": "queued"\n}'}];
+  var cur=0,req=document.getElementById('req'),res=document.getElementById('res'),st=document.getElementById('stat'),tb=document.querySelectorAll('.tabs button');
+  function show(i){cur=i;req.innerHTML=D[i].q;res.textContent='{ }';st.textContent='Ready';st.className='';tb.forEach(function(b,j){b.setAttribute('aria-selected',String(j===i));});}
+  tb.forEach(function(b,i){b.addEventListener('click',function(){show(i);});});
+  document.getElementById('send').addEventListener('click',function(){st.textContent='Sending…';res.textContent='…';setTimeout(function(){res.textContent=D[cur].a;st.textContent='200 OK';st.className='ok';},450);});
+  show(0);
+  // gyroscope scene
+  var c2=document.getElementById('gl2');
+  if(window.THREE&&c2){try{
+    var R=new THREE.WebGLRenderer({canvas:c2,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio||1,2));
+    var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(40,1,.1,100);C.position.z=8.5;
+    var G=new THREE.Group();S.add(G);
+    var ig=new THREE.IcosahedronGeometry(1.15,1),pp=ig.attributes.position,col=new Float32Array(pp.count*3),cc=new THREE.Color();
+    for(var a=0;a<pp.count;a+=3){var cy=(pp.getY(a)+pp.getY(a+1)+pp.getY(a+2))/3,cx=(pp.getX(a)+pp.getX(a+1)+pp.getX(a+2))/3;cc.setHSL(.5+cy*.17+cx*.1,.85,.58);for(var q=0;q<3;q++){col[(a+q)*3]=cc.r;col[(a+q)*3+1]=cc.g;col[(a+q)*3+2]=cc.b;}}
+    ig.setAttribute('color',new THREE.BufferAttribute(col,3));
+    var core=new THREE.Mesh(ig,new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,metalness:.55,roughness:.28}));G.add(core);
+    G.add(new THREE.Mesh(new THREE.SphereGeometry(1.55,32,32),new THREE.MeshBasicMaterial({color:0x7B5CFF,transparent:true,opacity:.1,side:THREE.BackSide})));
+    var rg=[],rc=[0x29E0FF,0xFF4FA3,0xFFC857];
+    for(var n=0;n<3;n++){
+      var grp=new THREE.Group(),rad=1.9+n*.5,pv=new THREE.Group();
+      var ring=new THREE.Mesh(new THREE.TorusGeometry(rad,.035,16,160),new THREE.MeshStandardMaterial({color:rc[n],metalness:.8,roughness:.2,emissive:rc[n],emissiveIntensity:.4}));
+      var bead=new THREE.Mesh(new THREE.SphereGeometry(.12,20,20),new THREE.MeshBasicMaterial({color:rc[n]}));bead.position.x=rad;pv.add(bead);
+      grp.add(ring,pv);grp.rotation.set(n*1.1,n*.7,0);G.add(grp);rg.push({g:grp,p:pv,s:.02+n*.012});
+    }
+    var sg=new THREE.BufferGeometry(),sa=new Float32Array(600);for(var m=0;m<600;m++)sa[m]=(Math.random()-.5)*12;
+    sg.setAttribute('position',new THREE.BufferAttribute(sa,3));S.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xBFC6FF,size:.03})));
+    S.add(new THREE.AmbientLight(0x7078D0,.8));
+    var pl1=new THREE.PointLight(0x29E0FF,70,30);pl1.position.set(4,3,5);S.add(pl1);
+    var pl2=new THREE.PointLight(0xFF4FA3,60,30);pl2.position.set(-4,-3,4);S.add(pl2);
+    var tx=0,ty=0,vis=true,tt=0;
+    addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;});
+    function fit(){var h=c2.parentElement;R.setSize(h.clientWidth,h.clientHeight,false);C.aspect=h.clientWidth/h.clientHeight;C.updateProjectionMatrix();}
+    fit();addEventListener('resize',fit);
+    if(window.IntersectionObserver)new IntersectionObserver(function(en){vis=en[0].isIntersecting;}).observe(c2);
+    function spin(){
+      tt+=.01;
+      if(vis){
+        G.rotation.y+=(tx*1.6-G.rotation.y)*.05;G.rotation.x+=(ty*1.0-G.rotation.x)*.05;
+        core.rotation.y=tt*.7;core.rotation.x=tt*.4;core.scale.setScalar(1+Math.sin(tt*2)*.03);
+        rg.forEach(function(o){o.g.rotation.z+=o.s*.4;o.p.rotation.z+=o.s*3;});
+        R.render(S,C);
+      }
+      if(!calm)requestAnimationFrame(spin);
+    }
+    spin();
+  }catch(e){}}
+  // wallet
+  var wal=document.getElementById('wal');
+  document.getElementById('wbtn').addEventListener('click',function(){if(wal.showModal)wal.showModal();});
+  document.getElementById('wclose').addEventListener('click',function(){wal.close();});
+  // dialog
+  var dlg=document.getElementById('dlg');
+  document.querySelectorAll('.buy').forEach(function(b){b.addEventListener('click',function(){document.getElementById('dlg-t').textContent='خرید پلن '+b.dataset.plan;if(dlg.showModal)dlg.showModal();});});
+  document.getElementById('close').addEventListener('click',function(){dlg.close();});
+})();
+</script>
+</body>
+</html>
